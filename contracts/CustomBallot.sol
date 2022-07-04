@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity >=0.8.0 <0.9.0;
 
 interface IERC20Votes {
     function getPastVotes(address, uint256) external view returns (uint256);
@@ -12,6 +12,7 @@ contract CustomBallot {
         uint256 weight,
         uint256 proposalVotes
     );
+
 
     struct Proposal {
         bytes32 name;
@@ -58,5 +59,13 @@ contract CustomBallot {
         votingPower_ =
             voteToken.getPastVotes(msg.sender, referenceBlock) -
             spentVotePower[msg.sender];
+    }
+
+    function returnPastVotes() public view returns (uint256 _pastVotes) {
+        _pastVotes = uint256(voteToken.getPastVotes(msg.sender, referenceBlock));
+    }
+
+    function delegate(address to) external {
+
     }
 }

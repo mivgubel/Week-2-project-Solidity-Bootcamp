@@ -9,6 +9,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 contract MyToken is ERC20, AccessControl, ERC20Permit, ERC20Votes {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
+    mapping(address => uint256) balances;
+
     constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
@@ -16,7 +18,14 @@ contract MyToken is ERC20, AccessControl, ERC20Permit, ERC20Votes {
 
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
         _mint(to, amount);
+        balances[to] += amount;
     }
+
+    function grantMintRole(address to) public {
+        _grantRole(MINTER_ROLE, to);
+    }
+
+   
 
     // The following functions are overrides required by Solidity.
 
