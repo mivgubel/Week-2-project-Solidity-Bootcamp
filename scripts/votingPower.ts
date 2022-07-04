@@ -5,8 +5,9 @@ import { CustomBallot, MyToken } from "../typechain";
 import { Contract, ethers } from "ethers";
 import { ethers as eth } from "hardhat";
 
-
-//This script is really just something I'm using to debug and figure out what functions we need to add to our contract
+// ===================================  !!  ============================================
+//This script is really just something I'm using to debug and figure out 
+//what functions we need to add to our contract
 
 async function main() {
   const EXPOSED_KEY =
