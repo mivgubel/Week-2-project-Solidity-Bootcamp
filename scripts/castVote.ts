@@ -31,7 +31,7 @@ async function main() {
 
   const indexProposal = process.argv[3];
 
-  const votingQuantity = process.argv[4];
+  const votingQuantity = ethers.utils.parseEther(process.argv[4]);
   if (process.argv.length < 5) {
     throw new Error(
       "Please specify amount of voting weight to cast to this vote"

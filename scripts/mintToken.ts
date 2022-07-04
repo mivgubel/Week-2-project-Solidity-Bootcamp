@@ -39,9 +39,7 @@ async function main() {
       signer
     ) as MyToken;
 
-    const tx = await tokenContract
-      .connect(accounts[1])
-      .mint(wallet.address, mintQuantity);
+    const tx = await tokenContract.mint(wallet.address, mintQuantity);
     console.log("Awaiting confirmation...");
     await tx.wait();
     console.log(`${mintQuantity} token(s) minted to wallet: ${wallet.address}`);
@@ -58,13 +56,6 @@ async function main() {
     await tx3.wait();
     console.log(
       `${mintQuantity} token(s) minted to wallet: ${accounts[0].address}`
-    );
-
-    const tx4 = await tokenContract.mint(accounts[2].address, mintQuantity);
-    console.log("Awaiting confirmation...");
-    await tx4.wait();
-    console.log(
-      `${mintQuantity} token(s) minted to wallet: ${accounts[2].address}`
     );
   } catch (err) {
     console.log(err);
